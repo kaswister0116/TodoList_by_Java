@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ToDoリスト</title>
+        <link rel="stylesheet" th:href="@{/styles.css}" />
+    </head>
+    <body>
+        <header class="header">
+            <h1>ToDoアプリ</h1>
+        </header>
+
+        <div class="body-container">
+            <form
+                th:action="@{/create}"
+                method="post"
+                class="todo-form"
+                th:object="${todo}"
+            >
+                <div class="form-row">
+                    <input
+                        type="text"
+                        th:field="*{description}"
+                        placeholder="新しいToDoを入力"
+                        class="todo-input"
+                        required
+                    />
+                </div>
+                <div class="form-row">
+                    <div class="deadline-container">
+                        <span
+                            class="calendar-icon"
+                            onclick="document.getElementById('new-deadline').click()"
+                            >📅</span
+                        >
+                        <input
+                            type="date"
+                            th:field="*{deadline}"
+                            id="new-deadline"
+                            class="deadline-input"
+                        />
+                        <span id="deadline-display">期限を設定</span>
+                    </div>
+                    <select th:field="*{priority}" class="priority-select">
+                        <option value="1">優先度: 高</option>
+                        <option value="2" selected>優先度: 中</option>
+                        <option value="3">優先度: 低</option>
+                    </select>
+                    <input
+                        type="text"
+                        th:field="*{notes}"
+                        placeholder="メモ（任意）"
+                        class="notes-input"
+                    />
+                    <button type="submit" class="register-button">登録</button>
+                </div>
+            </form>
+
+            <p class="list-todo">ToDoリスト</p>
+            <div th:each="todo : ${todos}">
+                <form
+                    th:if="${!todo.completed}"
+                    method="post"
+                    class="list-form"
+                >
+                    <div class="todo-content">
+                        <div class="todo-header">
+                            <p
+                                class="todo-description"
+                                th:text="${todo.description}"
+                            >
+                                説明
+                            </p>
+                            <div class="todo-meta">
+                                <p
+                                    class="created-at"
+                                    th:text="'作成日時: ' + ${#temporals.format(todo.createdAt, 'yyyy-MM-dd HH:mm')}"
+                                ></p>
+                                <p
+                                    class="deadline"
+                                    th:if="${todo.deadline}"
+                                    th:text="'期限: ' + ${todo.deadline}"
+                                >
+                                    期限
+                                </p>
+                                <p
+                                    class="deadline"
+                                    th:if="${todo.deadline == null}"
+                                >
+                                    期限: 未設定
+                                </p>
+                                <p
+                                    class="priority"
+                                    th:text="'優先度: ' + ${todo.priority == 1 ? '高' : (todo.priority == 3 ? '低' : '中')}"
+                                >
+                                    優先度
+                                </p>
+                                <div class="progress-bar-container">
+                                    <div
+                                        class="progress-bar"
+                                        th:style="'--progress:' + ${todo.progress} + '%'"
+                                    ></div>
+                                    <span
+                                        class="progress-text"
+                                        th:text="'進捗: ' + ${todo.progress} + '%'"
+                                        >進捗</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <p class="notes" th:text="'メモ: ' + ${todo.notes}">
+                            メモ
+                        </p>
+                    </div>
+
+                    <input
+                        type="hidden"
+                        name="todoId"
+                        th:value="${todo.todoId}"
+                    />
+
+                    <div class="button-group">
+                        <button
+                            type="submit"
+                            th:formaction="@{/complete}"
+                            class="button"
+                        >
+                            完了
+                        </button>
+                        <button
+                            type="submit"
+                            th:formaction="@{/delete}"
+                            class="delete-button"
+                        >
+                            削除
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <p class="done-todo">完了したToDo</p>
+            <div th:each="todo : ${todos}">
+                <form th:if="${todo.completed}" method="post" class="list-form">
+                    <div class="todo-content">
+                        <p
+                            class="todo-description"
+                            th:text="${todo.description}"
+                        >
+                            説明
+                        </p>
+                        <div class="todo-meta">
+                            <p
+                                class="created-at"
+                                th:text="'作成日時: ' + ${#temporals.format(todo.createdAt, 'yyyy-MM-dd HH:mm')}"
+                            ></p>
+                            <p
+                                class="deadline"
+                                th:text="'完了日時: ' + ${#temporals.format(todo.completedAt, 'yyyy-MM-dd HH:mm')}"
+                            ></p>
+                        </div>
+                    </div>
+                    <input
+                        type="hidden"
+                        name="todoId"
+                        th:value="${todo.todoId}"
+                    />
+                    <div class="button-group">
+                        <button
+                            type="submit"
+                            th:formaction="@{/revert}"
+                            class="revert-button"
+                        >
+                            戻す
+                        </button>
+                        <button
+                            type="submit"
+                            th:formaction="@{/delete}"
+                            class="delete-button"
+                        >
+                            削除
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,376 @@
+/* 共通のスタイル */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  background-color: #f5f6fa;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 500;
+  font-size: 28px;
+  margin: 15px 0;
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  width: 480px;
+  height: 28px;
+  padding-left: 8px;
+  margin-bottom: 4px;
+  margin-top:4px;
+}
+
+.header {
+  width: 100%;
+  background-color: #4834d4;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.body-container {
+  max-width: 800px;
+  width: 95%;
+  padding: 20px;
+}
+
+.todo-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.todo-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #1E4062;
+  border-radius: 6px;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.deadline-input {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #1E4062;
+  border-radius: 6px;
+  padding: 0 10px;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.priority-select {
+  width: 120px;
+  height: 42px;
+  border: 1px solid #1E4062;
+  border-radius: 6px;
+  padding: 4px 10px;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.notes-input {
+  flex: 1;
+  height: 24px;
+  border: 1px solid #1E4062;
+  border-radius: 6px;
+  padding: 0px 10px;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.list-form {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 15px 0;
+  transition: transform 0.2s;
+}
+
+.list-form:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-description {
+  font-size: 18px;
+  color: #2d3436;
+  margin-bottom: 8px;
+}
+
+.button {
+  border: none;
+  border-radius: 6px;
+  background-color: #4834d4;
+  color: white;
+  height: 36px;
+  padding: 0 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #3c2bb7;
+}
+
+.register-button {
+  border: none;
+  border-radius: 6px;
+  background-color: #4834d4;
+  color: white;
+  height: 40px;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.register-button:hover {
+  background-color: #3c2bb7;
+}
+
+.delete-button {
+  border: none;
+  border-radius: 6px;
+  background-color: #e84393;
+  color: white;
+  height: 36px;
+  padding: 0 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #d63384;
+}
+
+.revert-button {
+  border: none;
+  border-radius: 6px;
+  background-color: #00b894;
+  color: white;
+  height: 36px;
+  padding: 0 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.revert-button:hover {
+  background-color: #00a885;
+}
+
+.edit-button {
+  border: 1px solid #b2bec3;
+  border-radius: 6px;
+  background-color: white;
+  color: #2d3436;
+  height: 36px;
+  padding: 0 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #f5f6fa;
+}
+
+.save-button {
+  height: 32px;
+  border-radius: 6px;
+  background-color: orange;
+}
+
+.cancel-button {
+  height: 32px;
+  border-radius:6px;
+}
+
+.todo-content {
+  flex: 1;
+}
+
+.created-at {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.list-todo, .done-todo {
+  font-size: 20px;
+  font-weight: 500;
+  color: #2d3436;
+  margin: 30px 0 15px;
+  text-align: center;
+}
+
+.todo-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.todo-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 30px;
+  margin-bottom: 5px;
+  font-size: 0.85em;
+}
+
+.deadline {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.deadline-near {
+  color: orange;
+  font-weight: bold;
+}
+
+.deadline-passed {
+  color: red;
+  font-weight: bold;
+}
+
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background-color: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress);
+  background-color: #00b894;
+  border-radius: 3px;
+}
+
+.progress-text {
+  white-space: nowrap;
+  color: #666;
+}
+
+/* 編集モードのスタイル */
+.edit-mode input[type="text"] {
+  width: 200px;
+  padding: 8px;
+}
+
+.edit-mode input[type="date"] {
+  padding: 8px;
+}
+
+.edit-form-group input[type="text"] {
+  width: 100%;
+  border-radius: 6px
+}
+
+.edit-form-group [type="date"],
+.edit-form-group [type="number"] {
+  border-radius: 6px;
+  height: 34px;
+}
+
+.notes-input {
+  border-radius: 6px;
+  width: 100%;
+  padding: 8px;
+}
+
+/* ボタングループのスタイル */
+.button-group {
+  display: flex;
+  gap: 5px;
+  /* align-self: flex-end; */
+}
+
+.normal-buttons, .edit-buttons {
+  display: flex;
+  gap: 5px;
+
+}
+
+.edit-deadline {
+  width: 100px;
+}
+
+.progress-input {
+  width: 60px;
+}
+
+.calendar-icon {
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 1.2em;
+  transition: transform 0.2s;
+}
+
+.calendar-icon:hover {
+  transform: scale(1.1);
+}
+
+.deadline-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 120px;
+  height: 40px;
+  border: 1px solid #1E4062;
+  border-radius: 6px;
+  padding: 0 10px;
+  box-shadow: 1px 1px 5px gray;
+  background-color: white;
+  cursor: pointer;
+}
+
+#deadline-display {
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.deadline-note {
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+
+.error-message {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
